@@ -15,7 +15,7 @@
 	<%-- 1. userDao 선언
 		 2. getUserList() 호출
 		 3. 호출 결과(List<UserVo>)를 for loop를 통해 tr태그를 반복 생성	
-	--%>
+	--%> 
 	<%
 		IUserDao dao = new UserDao();
 		List<UserVo> list = dao.getUserList();

@@ -9,23 +9,30 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
-  	<servlet-name>HelloServlet</servlet-name>	<!-- 개발자가 붙여주는 서블릿 이름(별칭) -->
-  	<servlet-class>kr.or.ddit.servlet.HelloServlet</servlet-class> <!-- 서블릿의 풀 네임 (패키지 + 클래스명) -->
+    <servlet-name>HelloServlet</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.HelloServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>HelloServlet</servlet-name>
-  	<url-pattern>/HelloServlet</url-pattern>
+    <servlet-name>HelloServlet</servlet-name>
+    <url-pattern>/HelloServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
-  	<servlet-name>TimesTablesServlet</servlet-name>	<!-- 개발자가 붙여주는 서블릿 이름(별칭) -->
-  	<servlet-class>kr.or.ddit.servlet.TimesTablesServlet</servlet-class> <!-- 서블릿의 풀 네임 (패키지 + 클래스명) -->
+    <servlet-name>TimesTablesServlet</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.TimesTablesServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>TimesTablesServlet</servlet-name>
-  	<url-pattern>/TimesTablesServlet</url-pattern>
+    <servlet-name>TimesTablesServlet</servlet-name>
+    <url-pattern>/TimesTablesServlet</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>RedirectServlet</display-name>
+    <servlet-name>RedirectServlet</servlet-name>
+    <servlet-class>kr.or.ddit.servlet.RedirectServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RedirectServlet</servlet-name>
+    <url-pattern>/RedirectServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

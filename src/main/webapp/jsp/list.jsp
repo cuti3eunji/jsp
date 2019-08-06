@@ -27,12 +27,12 @@
 		</tr>
 		
 		<%for(UserVo userVo : list) {%>
-			<tr><td><%=userVo.getUserName() %></td></tr>		
+			<tr><td><%=userVo.getUserNM() %></td></tr>		
 		<%} %>
 
 
 		<% for(int i=0; i<list.size(); i++){ %>
-			<tr><td><%= list.get(i).getUserName() %></td></tr>
+			<tr><td><%= list.get(i).getUserNM() %></td></tr>
 		<%} %>
 
 

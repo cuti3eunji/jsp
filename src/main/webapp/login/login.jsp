@@ -37,19 +37,20 @@
             
             // remember me checkbox 체크
             $('#rememberMe').prop("checked", true);
+            $('#pass').focus();
          }
          
          //signin btn 클릭 이벤트 핸들러
          $('#signinBtn').on('click', function () {
             
-            // remember me check box가 체크가 되었는지??
-            if($('#rememberMe').prop("checked")){
-               Cookies.set("userId", $('#userId').val(), {expires : 30}); //js-cookie사용
-            }else {
-               Cookies.remove("userId");
-            }
+//             // remember me check box가 체크가 되었는지??
+//             if($('#rememberMe').prop("checked")){
+//                Cookies.set("userId", $('#userId').val(), {expires : 30}); //js-cookie사용
+//             }else {
+//                Cookies.remove("userId");
+//             }
             
-            //로그인 요청
+//          //로그인 요청
             $('#frm').submit();
             
             // 체크되어있으면
@@ -59,7 +60,8 @@
             // 기존에 사용자가 아이디를 쿠키에 저장하는 기능을 사용하다가 더 이상 사용하지 않는 경우
             // 처음부터 아이디 쿠키 저장 기능을 사용하지 않는 경우
             // ==> userId 쿠키를 삭제
-         });
+            
+         }); //signin버튼 클릭
       });
    </script>
 
@@ -96,7 +98,7 @@
                
         <div class="checkbox">
           <label>
-            <input id="rememberMe" type="checkbox" value="remember-me"> Remember me
+            <input id="rememberMe" name="rememberMe" type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
         <button id="signinBtn" class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>

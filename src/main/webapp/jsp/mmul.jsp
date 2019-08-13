@@ -8,7 +8,7 @@
 
 </head>
 <body>
- <form action="<%=request.getContextPath() %>/jsp/mul.jsp" method="get">
+ <form action="${pageContext.request.contextPath}() %>/jsp/mul.jsp" method="get">
 	<h3> 두 개의 숫자 파라미터의 곱 구하기</h3>
 	
 	첫번째 숫자입력 : <input name="number" ><br>

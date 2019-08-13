@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath() %>/sumCalculation" method="post">
+	<form action="${pageContext.request.contextPath}() %>/sumCalculation" method="post">
 	<h3> 두 숫자 사이의 모든 숫자의 합</h3>
 	
 	첫번째 숫자입력 : <input name="start" ><br>

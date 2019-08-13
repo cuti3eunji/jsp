@@ -1,6 +1,5 @@
 package kr.or.ddit.user.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -42,6 +41,16 @@ public class UserDao implements IUserDao {
 		sqlSession.close();
 		
 		return userVo;
+	}
+
+	@Override
+	public List<User> getUserListOnlyHalf() {
+
+		SqlSession sqlSession = MybatisUtil.getSession();
+		List<User> halfUserList = sqlSession.selectList("user.getUserListOnlyHalf");
+		sqlSession.close();
+		
+		return halfUserList;
 	}
 
 }

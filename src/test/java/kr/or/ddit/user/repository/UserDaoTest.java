@@ -48,4 +48,23 @@ public class UserDaoTest {
 		assertEquals("brown1234", user.getPass());
 		
 	}
+	
+	
+	/**
+	* Method : getUserListOnlyHalfTest
+	* 작성자 : PC-14
+	* 변경이력 :
+	* Method 설명 : getUserListOnlyHalfTest 테스트
+	*/
+	@Test
+	public void getUserListOnlyHalfTest() {
+		/***Given***/
+		IUserDao dao = new UserDao();
+
+		/***When***/
+		List<User> halfUserList = dao.getUserListOnlyHalf();
+
+		/***Then***/
+		assertEquals(50, halfUserList.size());
+	}
 }

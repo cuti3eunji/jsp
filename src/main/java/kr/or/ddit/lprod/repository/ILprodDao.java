@@ -7,5 +7,7 @@ import kr.or.ddit.lprod.model.LprodVO;
 public interface ILprodDao {
 	
 	List<LprodVO> getLprodList();
+	
+	List<LprodVO> getProdList(String lprod_gu);
 
 }

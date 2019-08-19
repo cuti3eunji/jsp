@@ -26,4 +26,13 @@ public class LprodDaoImpl implements ILprodDao {
 		return lprodList;
 	}
 
+	@Override
+	public List<LprodVO> getProdList(String lprod_gu) {
+		SqlSession sqlSession = MybatisUtil.getSession();
+		List<LprodVO> prodList = sqlSession.selectList("lprod.getProdList", lprod_gu);
+		sqlSession.close();
+		
+		return prodList;
+	}
+
 }

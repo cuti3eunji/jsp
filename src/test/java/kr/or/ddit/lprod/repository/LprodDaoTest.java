@@ -28,4 +28,16 @@ public class LprodDaoTest {
 		assertEquals(9, lprodList.size());
 	}
 	
+	@Test
+	public void getProdListTest() {
+		/***Given***/
+		ILprodDao lprodDao = new LprodDaoImpl();
+
+		/***When***/
+		List<LprodVO> prodList = lprodDao.getProdList("P101");
+
+		/***Then***/
+		assertEquals(6, prodList.size());
+	}
+	
 }

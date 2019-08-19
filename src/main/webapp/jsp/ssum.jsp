@@ -8,7 +8,7 @@
 
 </head>
 <body>
- <form action="${pageContext.request.contextPath}() %>/jsp/sum.jsp" method="get">
+ <form action="${cp}/jsp/sum.jsp" method="get">
 	<h3> 두 숫자 사이의 모든 숫자의 합</h3>
 	<h4>* 첫번째 숫자보다 두번째숫자를 크게 입력하세요옹~</h4><br>
 	

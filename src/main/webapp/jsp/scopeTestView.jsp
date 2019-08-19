@@ -10,7 +10,7 @@
 
 <h2>scope test</h2>
 
-  <form action="${pageContext.request.contextPath}()%>/scopeTest" method="post">
+  <form action="${cp}/scopeTest" method="post">
 	request : <input type="text" name="reqParam" value="brown"> <br>
 	session : <input type="text" name="sessionParam" value="sally"> <br>
 	application : <input type="text" name="applicationParam" value="cony"> <br>

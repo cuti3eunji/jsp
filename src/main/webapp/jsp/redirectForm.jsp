@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}() %>/redirectServlet" method="post">
+<form action="${cp}/redirectServlet" method="post">
 	<input name="userName" value="brown"><br>
 	<input type="submit" value="전송"><br>
 </form>

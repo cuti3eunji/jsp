@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,38 +19,10 @@
 
 <%@include file="/commonJsp/basicLib.jsp"%>
 
-<script>
-//문서 로딩이 완료되고 나서
-$(document).ready(function(){
-	
-	//사용자 정보 클릭시 이벤트 핸들러
-	$(".prodTr").on("click", function(){
-		
-		console.log("prodTr click");
-		
-		//클릭된 tr 태그의 자식태그(td)중 두번째 문자열
-		console.log($(this).children().eq(1).text());
-		
-		//input 태그에 값 설정
-		$("#lprodGu").val($(this).children().eq(1).text());
-		
-		//form 태그이용 전송
-// 		console.log("serialize : " + $("#frm").serialize());
-		
-		$("#frm").submit();
-	});
-	
-})
-
-</script>
 
 </head>
 
 <body>
-<form id="frm" action="${cp }/prodList" method="get">
-	<input type="hidden" id="lprodGu" name="lprodGu"/>	
-</form>
-
 	<!-- Header -->
 	<%@include file="/commonJsp/header.jsp"%>
 
@@ -62,42 +34,35 @@ $(document).ready(function(){
 
 				<!-- left -->
 				<%@ include file="/commonJsp/left.jsp"%>
-				
+
 			</div>
 
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
 				<div class="row">
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">제품 그룹</h2>
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<tr>
-									<th>Lprod_ID</th>
-									<th>Lprod_GU</th>
-									<th>Lprod_NM</th>
+									<th>제품그룹명</th>
+									<th>제품그룹번호</th>
+									<th>바이어이름</th>
+									<th>제품아이디</th>
+									<th>제품명</th>
+									<th>가격</th>
 								</tr>
 
-								<c:forEach items="${lprodList}" var="lprod">
+								<c:forEach items="${prodList}" var="prod">
 									<tr class="prodTr">
-										<td>${lprod.lprod_id}</td>
-										<td>${lprod.lprod_gu}</td>
-										<td>${lprod.lprod_nm}</td>
+										<td>${prod.lprod_nm}</td>
+										<td>${prod.prod_lgu}</td>
+										<td>${prod.buyer_name}</td>
+										<td>${prod.prod_id}</td>
+										<td>${prod.prod_name}</td>
+										<td>${prod.prod_price}</td>
 									</tr>
 								</c:forEach>
 							</table>
-						</div>
-
-<!-- 						<a class="btn btn-default pull-right">사용자 등록</a> -->
-
-						<div class="text-center">
-							<ul class="pagination">
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-							</ul>
 						</div>
 					</div>
 				</div>

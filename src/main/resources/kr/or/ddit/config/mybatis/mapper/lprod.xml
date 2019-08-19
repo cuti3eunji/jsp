@@ -8,4 +8,12 @@
     from lprod
   </select>
   
+  <select id="getProdList" parameterType="String" resultType="lprod">
+   select lprod_nm, prod_lgu, buyer_name, prod_id, prod_name, prod_price 
+     from prod, lprod, buyer
+    where prod_lgu = lprod_gu
+      and buyer_id = prod_buyer
+      and prod_lgu = #{lprod_lgu}
+  </select>
+  
 </mapper>

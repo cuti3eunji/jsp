@@ -31,9 +31,11 @@ $(document).ready(function(){
 		//클릭된 tr 태그의 자식태그(td)중 두번째 문자열
 		console.log($(this).children().eq(1).text());
 		
-		//input 태그에 값 설정
-		$("#lprodGu").val($(this).children().eq(1).text());
+		var dataValue = $(this).data("lprodgu");
 		
+		//input 태그에 값 설정
+		$("#lprodGu").val(dataValue);
+
 		//form 태그이용 전송
 // 		console.log("serialize : " + $("#frm").serialize());
 		
@@ -43,6 +45,18 @@ $(document).ready(function(){
 })
 
 </script>
+
+<style>
+	.prodTr:hover {
+		background : #E4F7BA;
+		cursor : pointer;
+	}
+	
+	.prodTr:nth-child(even){
+		background : #F6F6F6;
+	}
+	
+</style>
 
 </head>
 
@@ -71,7 +85,7 @@ $(document).ready(function(){
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">제품 그룹</h2>
 						<div class="table-responsive">
-							<table class="table table-striped">
+							<table class="table">
 								<tr>
 									<th>Lprod_ID</th>
 									<th>Lprod_GU</th>
@@ -79,7 +93,7 @@ $(document).ready(function(){
 								</tr>
 
 								<c:forEach items="${lprodList}" var="lprod">
-									<tr class="prodTr">
+									<tr class="prodTr" data-lprodgu="${lprod.lprod_gu }">
 										<td>${lprod.lprod_id}</td>
 										<td>${lprod.lprod_gu}</td>
 										<td>${lprod.lprod_nm}</td>

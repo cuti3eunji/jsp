@@ -1,15 +1,30 @@
 package kr.or.ddit.lprod.model;
 
 public class ProdVO {
+	private String lprod_nm;
+	private String lprod_gu;
+	private String buyer_name;
 	private String prod_id;
 	private String prod_name;
-	private String prod_lgu;
-	private String prod_buyer;
-	private String prod_price;
-	private String prod_outline;
-	private String prod_detail;
-	
-	
+	private int	prod_cost;
+	public String getLprod_nm() {
+		return lprod_nm;
+	}
+	public void setLprod_nm(String lprod_nm) {
+		this.lprod_nm = lprod_nm;
+	}
+	public String getLprod_gu() {
+		return lprod_gu;
+	}
+	public void setLprod_gu(String lprod_gu) {
+		this.lprod_gu = lprod_gu;
+	}
+	public String getBuyer_name() {
+		return buyer_name;
+	}
+	public void setBuyer_name(String buyer_name) {
+		this.buyer_name = buyer_name;
+	}
 	public String getProd_id() {
 		return prod_id;
 	}
@@ -22,34 +37,16 @@ public class ProdVO {
 	public void setProd_name(String prod_name) {
 		this.prod_name = prod_name;
 	}
-	public String getProd_lgu() {
-		return prod_lgu;
+	public int getProd_cost() {
+		return prod_cost;
 	}
-	public void setProd_lgu(String prod_lgu) {
-		this.prod_lgu = prod_lgu;
+	public void setProd_cost(int prod_cost) {
+		this.prod_cost = prod_cost;
 	}
-	public String getProd_buyer() {
-		return prod_buyer;
+	@Override
+	public String toString() {
+		return "Prod [lprod_nm=" + lprod_nm + ", lprod_gu=" + lprod_gu + ", buyer_name=" + buyer_name + ", prod_id="
+				+ prod_id + ", prod_name=" + prod_name + ", prod_cost=" + prod_cost + "]";
 	}
-	public void setProd_buyer(String prod_buyer) {
-		this.prod_buyer = prod_buyer;
-	}
-	public String getProd_price() {
-		return prod_price;
-	}
-	public void setProd_price(String prod_price) {
-		this.prod_price = prod_price;
-	}
-	public String getProd_outline() {
-		return prod_outline;
-	}
-	public void setProd_outline(String prod_outline) {
-		this.prod_outline = prod_outline;
-	}
-	public String getProd_detail() {
-		return prod_detail;
-	}
-	public void setProd_detail(String prod_detail) {
-		this.prod_detail = prod_detail;
-	}
+
 }

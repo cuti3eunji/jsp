@@ -45,4 +45,16 @@ public interface IUserService {
 	* Method 설명 : 사용자 페이징 리스트 조회
 	*/
 	Map<String, Object> getUserPagingList(Page page);
+	
+	
+	/**
+	* Method : insertUsert
+	* 작성자 : PC-14
+	* 변경이력 :
+	* @param user
+	* Method 설명 :
+	*/
+	int insertUser(User user);
+	
+	int deleteUser(String userId);
 }

@@ -106,7 +106,7 @@ $(document).ready(function(){
 							</table>
 						</div>
 
-						<a class="btn btn-default pull-right">사용자 등록</a>
+						<a href="${cp }/userForm" class="btn btn-default pull-right">사용자 등록</a>
 
 						<div class="text-center">
 							<ul class="pagination">
@@ -115,9 +115,9 @@ $(document).ready(function(){
 									단 1페이지인 경우는 li 태그에 class="disabled"를 추가하고 이동경로는 차단
 								--%>
 								<c:choose>
-									<c:when test="${param.page != 1}">
+									<c:when test="${pageVo.page != 1}">
 										<li>
-											<a href="${cp }/userPagingList?page=${param.page-1}&pageSize=10" aria-label="Previous">
+											<a href="${cp }/userPagingList?page=${pageVo.page-1}&pageSize=10" aria-label="Previous">
 												<span aria-hidden="true">&laquo;</span>
 											</a>
 										</li>
@@ -139,7 +139,7 @@ $(document).ready(function(){
 
 									<%-- 중복이지만 가독성 좋음 --%>
 									<c:choose>
-										<c:when test="${page == param.page }">
+										<c:when test="${page == pageVo.page }">
 											<li class="active"><span>${page }</span></li>
 										</c:when>
 										<c:otherwise>
@@ -151,8 +151,8 @@ $(document).ready(function(){
 								
 								<%-- 다음페이지 --%>
 								<c:choose>
-									<c:when test="${param.page != paginationSize}">
-										<li><a href="${cp }/userPagingList?page=${param.page+1}&pageSize=10" aria-label="Next">
+									<c:when test="${pageVo.page != paginationSize}">
+										<li><a href="${cp }/userPagingList?page=${pageVo.page+1}&pageSize=10" aria-label="Next">
 										<span aria-hidden="true">&raquo;</span> 
 										</a></li>
 									</c:when>

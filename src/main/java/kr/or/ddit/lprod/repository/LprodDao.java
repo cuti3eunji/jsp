@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import kr.or.ddit.common.model.Page;
 import kr.or.ddit.lprod.model.LprodVO;
 
-public interface ILprodDao {
+public class LprodDao implements ILprodDao {
 
 	/**
 	* Method : getLprodList
@@ -16,7 +16,10 @@ public interface ILprodDao {
 	* @return
 	* Method 설명 : 제품 그룹 리스트 조회
 	*/
-	List<LprodVO> getLprodList(SqlSession sqlSession);
+	@Override
+	public List<LprodVO> getLprodList(SqlSession sqlSession) {
+		return sqlSession.selectList("lprod.getLprodList");
+	}
 
 	/**
 	* Method : getLprodPagingList
@@ -27,7 +30,10 @@ public interface ILprodDao {
 	* @return
 	* Method 설명 : 제품 그룹 페이징 리스트 조회
 	*/
-	List<LprodVO> getLprodPagingList(SqlSession sqlSession, Page page);
+	@Override
+	public List<LprodVO> getLprodPagingList(SqlSession sqlSession, Page page) {
+		return sqlSession.selectList("lprod.getLprodPagingList", page);
+	}
 
 	/**
 	* Method : getLprodTotalCnt
@@ -37,6 +43,9 @@ public interface ILprodDao {
 	* @return
 	* Method 설명 : 제품 그룹 전체 건수 조회
 	*/
-	int getLprodTotalCnt(SqlSession sqlSession);
+	@Override
+	public int getLprodTotalCnt(SqlSession sqlSession) {
+		return sqlSession.selectOne("lprod.getLprodTotalCnt");
+	}
 
 }

@@ -24,44 +24,42 @@ import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserService;
 import kr.or.ddit.util.FileuploadUtil;
 
-@WebServlet("/userForm")
+/**
+ * Servlet implementation class UserEditController
+ */
+@WebServlet("/userEdit")
 @MultipartConfig(maxFileSize = 1024*1024*5, maxRequestSize = 1024*1024*5*5)
-public class UserFormController extends HttpServlet {
+public class UserEditController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = LoggerFactory.getLogger(UserFormController.class);
-
+	private static final Logger logger = LoggerFactory.getLogger(UserEditController.class);
+	
 	private IUserService userService;
-
+	
 	@Override
 	public void init() throws ServletException {
 		userService = new UserService();
 	}
-
-	/**
-	 * Method : doGet 변경이력 :
-	 * 
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException      Method 설명 : 사용자 등록 페이지 출력 요청
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.getRequestDispatcher("user/userForm.jsp").forward(request, response);
+	
+	
+	//D O G E T 
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String userId = request.getParameter("userId");
+		
+		logger.debug(userId);
+		
+		User user = userService.getUser(userId);
+		
+		request.setAttribute("user", user);
+		
+		request.getRequestDispatcher("/user/userEdit.jsp").forward(request, response);
 	}
 
-	/**
-	 * @Method : doPost
-	 * @변경이력 :
-	 * 
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException      
-	 * @Method 설명 : 사용자 등록 요청
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	
+	//D O P O S T 
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
 		String userId = request.getParameter("userId");
@@ -80,6 +78,7 @@ public class UserFormController extends HttpServlet {
 		//사용자가 파일을 업로드 한 경우
 		String filename = "";
 		String path = "";
+		
 		if(picture.getSize() > 0) {
 			filename = FileuploadUtil.getFilename(picture.getHeader("Content-Disposition"));	//사용자가 업로드한 파일
 			String realFilename = UUID.randomUUID().toString();
@@ -87,48 +86,39 @@ public class UserFormController extends HttpServlet {
 			path = FileuploadUtil.getPath() + realFilename + ext;
 			
 			picture.write(path);
+		}else {
+			User getUser = userService.getUser(userId);
+			
+			filename = getUser.getFilename();
+			path = getUser.getRealfilename();
+			
 		}
-		logger.debug(path);
-
+		
 		try {
 			reg_dt_date = new SimpleDateFormat("yyyy-MM-dd").parse(reg_dt);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		//validation
-		Pattern p = Pattern.compile("^([a-zA-Z\\d\\.@]){5,20}$");
-		Matcher m = p.matcher(userId);
-		if(!m.find()) {
-			request.setAttribute("userIdMsg", "사용자 아이디가 잘못되었습니다");
-			doGet(request, response);
-		}
-		else {
+		// 사용자 정보 수정
+		User user = new User(userId, userNm, alias, reg_dt_date, addr1, addr2, zipcode, pass, filename, path);
 		
-			// 사용자 등록
-			User user = new User(userId, userNm, alias, reg_dt_date, addr1, addr2, zipcode, pass, filename, path);
-			int insertCnt = 0;
-	
-			try {
-				insertCnt = userService.insertUser(user);
-				// 정상등록 : 사용자 상세화면으로 이동
-				if (insertCnt == 1) {
-					// request.getRequestDispatcher("/user").forward(request, response);
-					
-					// 서버 상의 상태가 바뀔때는 redirect를 사용한다. -중복방지
-					response.sendRedirect(request.getContextPath() + "/user?userId=" + userId);
-				}
-				// 비정상 : 사용자 등록화면으로 이동
-				else {
-					doGet(request, response);
-				}
+		int updateCnt = 0;
 
-			} catch (Exception e) {
+		try {
+			updateCnt = userService.updateUser(user);
+			// 정상등록 : 사용자 상세화면으로 이동
+			if (updateCnt == 1) {
+				// 서버 상의 상태가 바뀔때는 redirect를 사용한다. -중복방지
+				response.sendRedirect(request.getContextPath() + "/user?userId=" + userId);
+			}
+			// 비정상 : 사용자 등록화면으로 이동
+			else {
 				doGet(request, response);
-			}//catch
-		}//else
-
+			}//else
+		} catch (Exception e) {
+			doGet(request, response);
+		}//catch
 	}
 
 }

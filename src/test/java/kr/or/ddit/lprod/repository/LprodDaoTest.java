@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.or.ddit.lprod.model.LprodVO;
+import kr.or.ddit.lprod.model.ProdVO;
 import kr.or.ddit.util.MybatisUtil;
 
 public class LprodDaoTest {

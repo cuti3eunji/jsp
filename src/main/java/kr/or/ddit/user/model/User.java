@@ -6,6 +6,8 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import kr.or.ddit.encrypt.encrypt.kisa.sha256.KISA_SHA256;
+
 public class User {
 	private static final Logger logger = LoggerFactory.getLogger(User.class);
 	
@@ -15,6 +17,69 @@ public class User {
 	private String alias;	//별명
 	private Date reg_dt;	//등록일
 	private String addr1;
+	private String addr2;
+	private String zipcode;
+
+	private String filename;	 //파일명(사용자 업로드 파일명)
+	private String realfilename; //물리 파일명
+	private String realfilename2; //물리 파일명
+
+
+	public User(String userNM) {
+		this.userNM = userNM;
+	}
+	
+	public User() {
+		
+	}
+	
+	public User(String userId, String userNm, String alias, Date reg_dt, String addr1, String addr2,
+			String zipcode, String pass, String filename, String realfilename) {
+		this.userId = userId;
+		this.userNM = userNm;
+		this.alias = alias;
+		this.reg_dt = reg_dt;
+		this.addr1 = addr1;
+		this.addr2 = addr2;
+		this.zipcode = zipcode;
+		this.pass = pass;
+		this.filename = filename;
+		this.realfilename = realfilename;
+	}
+	
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", pass=" + pass + ", userNM=" + userNM + ", alias=" + alias + ", reg_dt="
+				+ reg_dt + ", addr1=" + addr1 + ", addr2=" + addr2 + ", zipcode=" + zipcode + ", filename=" + filename
+				+ ", realfilename=" + realfilename + "]";
+	}
+
+	
+	
+	public String getRealfilename2() {
+		return realfilename2;
+	}
+
+	public void setRealfilename2(String realfilename2) {
+		this.realfilename2 = realfilename2;
+	}
+	
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public String getRealfilename() {
+		return realfilename;
+	}
+
+	public void setRealfilename(String realfilename) {
+		this.realfilename = realfilename;
+	}
+
 	public String getAddr1() {
 		return addr1;
 	}
@@ -38,14 +103,7 @@ public class User {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-
-	private String addr2;
-	private String zipcode;
 	
-	
-	public User() {
-		
-	}
 	
 	public String getAlias() {
 		return alias;
@@ -61,7 +119,6 @@ public class User {
 	
 	//데이트타입 포맷 변경된버전~~
 	public String getReg_dt_fmt() {
-		logger.debug("getReg_dt_fmt method call");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		return sdf.format(reg_dt);
 	}
@@ -72,28 +129,7 @@ public class User {
 
 
 	
-	public User(String userNM) {
-		this.userNM = userNM;
-	}
-	
-	public User(String userId, String userNm, String alias, Date reg_dt, String addr1, String addr2,
-			String zipcode, String pass) {
-		this.userId = userId;
-		this.userNM = userNm;
-		this.alias = alias;
-		this.reg_dt = reg_dt;
-		this.addr1 = addr1;
-		this.addr2 = addr2;
-		this.zipcode = zipcode;
-		this.pass = pass;
-	}
 
-	@Override
-	public String toString() {
-		return "UserVo [userId=" + userId + ", pass=" + pass + ", userNM=" + userNM + "]";
-	}
-
-	
 	public String getUserId() {
 		return userId;
 	}
@@ -122,7 +158,8 @@ public class User {
 	
 	public boolean checkLoginValidate(String userId, String pass) {
 		
-		if(userId.equals(this.userId) && pass.equals(this.pass)) 
+		//암호화 문장끼리 비교
+		if(userId.equals(this.userId) && KISA_SHA256.encrypt(pass).equals(this.pass)) 
 			return true;
 		
 		return false;

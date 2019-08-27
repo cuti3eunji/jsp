@@ -2,6 +2,7 @@ package kr.or.ddit.user.repository;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -116,7 +117,25 @@ public class UserServiceTest {
 		assertEquals(11, (int)paginationSize);
 	}
 	
-	
+	/**
+	* Method : updateUserTest
+	* 작성자 : PC-14
+	* 변경이력 :
+	* Method 설명 : 사용자 정보 수정 테스트
+	*/
+	@Test
+	public void updateUserTest() {
+		/***Given***/
+		User user = userService.getUser(userId);
+		user.setAlias("Service수정테스트");
+		
+		/***When***/
+		int updateCnt = userService.updateUser(user);
+
+		/***Then***/
+		assertEquals(1, updateCnt);
+
+	}
 	
 	
 	

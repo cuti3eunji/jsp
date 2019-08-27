@@ -20,22 +20,16 @@
 
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-
+<style>
+	img{
+		width:200px;
+		height:200px;
+	}
+</style>
 <script>
 	$(document).ready(function() {
-// 		// 서비스 오픈시에 반드시 제거할 것
-// 		setTestData(); 
-
-		//사용자 등록 버튼 클릭 이벤트 핸들러
-		$("#regBtn").on("click", function(){
-			
-			var userIdValidationChk = /^([a-zA-Z\d\.@]){5,20}$/.test($("#userId").val());
-			if(userIdValidationChk == false){
-				alert("사용자 아이디가 유효하지 않습니다");
-				$("#userId").focus();
-				return false;
-			}
-			
+		//수정 완료 버튼 클릭 이벤트 핸들러
+		$("#updateBtn").on("click", function(){
 			//submit;
 			$("#frm").submit();
 			
@@ -55,16 +49,6 @@
 		});
 	})
 
-	function setTestData() {
-		$("#userId").val("brownTest");
-		$("#userNm").val("브라운테스트");
-		$("#alias").val("곰테스트");
-		$("#reg_dt").val("2019-08-08");
-		$("#addr1").val("대전광역시 중구 중앙로 76");
-		$("#addr2").val("영민빌딩 2층 DDIT");
-		$("#zipcode").val("34940");
-		$("#pass").val("brownTest1234");
-	}
 </script>
 </head>
 
@@ -81,14 +65,15 @@
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-				<form id="frm" class="form-horizontal" role="form" action="${cp }/userForm"
+				<form id="frm" class="form-horizontal" role="form" action="${cp }/userEdit"
 					method="post" enctype="multipart/form-data">
 
 					<div class="form-group">
 						<label for="userpic" class="col-sm-2 control-label">사용자 사진</label>
+						<img src="${cp }/userPicture?userId=${user.userId}"/><br><br>
+						<label for="userpic" class="col-sm-2 control-label">&nbsp;&nbsp;</label>
 						<div class="col-sm-10">
-							<input type="file" class="form-control" id="picture" name="picture"
-								placeholder="사용자 사진">
+							<input type="file" class="form-control" id="picture" name="picture">
 						</div>
 					</div>
 
@@ -96,8 +81,7 @@
 						<label for="userId" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="userId" name="userId"
-								placeholder="사용자 아이디">
-								${userIdMsg }
+								value="${user.userId }" readonly>
 						</div>
 					</div>
 
@@ -105,7 +89,7 @@
 						<label for="userNm" class="col-sm-2 control-label">사용자 이름</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="userNm" name="userNm"
-								placeholder="사용자 이름" value="${param.userNM }">
+								placeholder="사용자 이름" value="${user.userNM }">
 						</div>
 					</div>
 
@@ -113,7 +97,7 @@
 						<label for="alias" class="col-sm-2 control-label">별명</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="alias" name="alias"
-								placeholder="별명" value="${param.alias }">
+								placeholder="별명" value="${user.alias }">
 						</div>
 					</div>
 
@@ -121,7 +105,7 @@
 						<label for="reg_dt" class="col-sm-2 control-label">생일</label>
 						<div class="col-sm-10">
 							<input type="date" class="form-control" id="reg_dt" name="reg_dt"
-								placeholder="생일" value="${param.reg_dt }">
+								placeholder="생일" value="${user.reg_dt_fmt }">
 						</div>
 					</div>
 
@@ -129,7 +113,7 @@
 						<label for="addr1" class="col-sm-2 control-label">주소1</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="addr1" name="addr1"
-								placeholder="주소1" readonly value="${param.addr1 }">
+								placeholder="주소1" readonly value="${user.addr1 }">
 						</div>
 						<div class="col-sm-1">
 							<button type="button" id="zipcodeBtn" class="btn btn-default">우편번호</button>
@@ -140,7 +124,7 @@
 						<label for="addr2" class="col-sm-2 control-label">주소2</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="addr2" name="addr2"
-								placeholder="주소2" value="${param.addr2 }">
+								placeholder="주소2" value="${user.addr2 }">
 						</div>
 					</div>
 
@@ -148,8 +132,7 @@
 						<label for="zipcode" class="col-sm-2 control-label">우편번호</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="zipcode"
-								name="zipcode" placeholder="우편번호" readonly
-								value="${param.zipcode }">
+								name="zipcode" placeholder="우편번호" readonly	value="${user.zipcode }">
 						</div>
 					</div>
 
@@ -157,13 +140,13 @@
 						<label for="pass" class="col-sm-2 control-label">비밀번호</label>
 						<div class="col-sm-10">
 							<input type="password" class="form-control" id="pass" name="pass"
-								placeholder="비밀번호">
+								placeholder="비밀번호" value="${user.pass }">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" id="regBtn" class="btn btn-default">사용자 등록</button>
+							<button type="button" id="updateBtn" class="btn btn-default">수정완료</button>
 						</div>
 					</div>
 				</form>

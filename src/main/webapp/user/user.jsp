@@ -19,13 +19,32 @@
 
 <%@include file="/commonJsp/basicLib.jsp"%>
 
+<script>
+
+  $(function(){
+	//사용자 수정 버튼 클릭 이벤트 핸들러
+	$("#editBtn").on("click", function(){
+		//submit;
+		$("#frm").submit();
+	})
+  })
+</script>
+
+<style>
+	img{
+		width:200px;
+		height:200px;
+	}
+</style>
 
 </head>
 
 <body>
 	<!-- Header -->
 	<%@include file="/commonJsp/header.jsp"%>
-
+<form id="frm" action="${cp }/userEdit" method="get">
+	<input type="hidden" id="userId" name="userId" value="${user.userId }"/>	
+</form>
 
 	<div class="container-fluid">
 		<div class="row">
@@ -40,6 +59,13 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<form class="form-horizontal" role="form">
 
+					<div class="form-group">
+						<label class="col-sm-2 control-label">사용자 사진</label>
+						<div class="col-sm-10">
+<%-- 							<img src="${cp }${user.realfilename2 }"> --%>
+							<img src="${cp }/userPicture?userId=${user.userId}"/>
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
@@ -60,7 +86,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="pass" class="col-sm-2 control-label">등록일</label>
+						<label for="pass" class="col-sm-2 control-label">생일</label>
 						<div class="col-sm-10">
 							<label class="control-label">${user.reg_dt_fmt }</label>
 						</div>
@@ -74,7 +100,7 @@
 
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">사용자 수정</button>
+							<button type="button" id="editBtn" class="btn btn-default">사용자 수정</button>
 						</div>
 					</div>
 				</form>

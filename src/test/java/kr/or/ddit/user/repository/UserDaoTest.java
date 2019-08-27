@@ -164,4 +164,27 @@ public class UserDaoTest {
 		assertEquals(1, insertCnt);
 	}
 	
+	/**
+	* Method : updateUserTest
+	* 작성자 : PC-14
+	* 변경이력 :
+	* Method 설명 : 사용자 정보 수정 테스트
+	 * @throws ParseException 
+	*/
+	@Test
+	public void updateUserTest() throws ParseException {
+		/***Given***/
+		insertUserTest();
+		User user = userDao.getUser(sqlSession, userId);
+		user.setUserNM("dao수정테스트");
+		
+		/***When***/
+		int updateCnt = userDao.updateUser(sqlSession, user);
+		sqlSession.commit();
+
+		/***Then***/
+		assertEquals(1, updateCnt);
+
+	}
+	
 }

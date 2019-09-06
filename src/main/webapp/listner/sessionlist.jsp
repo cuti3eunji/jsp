@@ -23,7 +23,7 @@
 		
 		<tr>
 			<td>${user.userId }</td>
-			<td>${user.userNm }</td>
+			<td>${user.userNM }</td>
 			<td>${user.alias }</td>
 		</tr>	
 		</c:forEach>

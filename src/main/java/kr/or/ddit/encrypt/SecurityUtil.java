@@ -1,4 +1,4 @@
-package kr.or.ddit.encrypt.encrypt;
+package kr.or.ddit.encrypt;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kr.or.ddit.encrypt.encrypt.kisa.aria.ARIAUtil;
+import kr.or.ddit.encrypt.kisa.aria.ARIAUtil;
 
 public class AriaUtilTest {
 	

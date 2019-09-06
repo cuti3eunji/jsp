@@ -1,4 +1,4 @@
-package kr.or.ddit.encrypt.encrypt.kisa.seed;
+package kr.or.ddit.encrypt.kisa.seed;
 
 import java.beans.Encoder;
 import java.io.UnsupportedEncodingException;

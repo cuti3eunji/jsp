@@ -1,4 +1,4 @@
-package kr.or.ddit.encrypt.encrypt.kisa.seed;
+package kr.or.ddit.encrypt.kisa.seed;
 
 /**
 @file KISA_SEED_ECB.java

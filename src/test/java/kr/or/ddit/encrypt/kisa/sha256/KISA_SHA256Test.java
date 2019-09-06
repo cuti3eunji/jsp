@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kr.or.ddit.encrypt.encrypt.kisa.sha256.KISA_SHA256;
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 
 public class KISA_SHA256Test {
 	private static final Logger logger = LoggerFactory.getLogger(KISA_SHA256Test.class);

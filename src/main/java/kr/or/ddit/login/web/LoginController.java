@@ -1,6 +1,7 @@
 package kr.or.ddit.login.web;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -76,6 +77,11 @@ public class LoginController extends HttpServlet {
 	*/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("login controller doPost()");
+		
+		Map<String, String[]> requestMap = request.getParameterMap();
+		//setParameter 메소드가 존재하지 않으니까 map 객체에 직접 넣으면 되지 않을까 ? 
+		//requestMap.put("UNT_CD", new String[] {"DDIT"});
+		
 		
 		//userId, password 파라미터 logger 출력
 		String userId = request.getParameter("userId");

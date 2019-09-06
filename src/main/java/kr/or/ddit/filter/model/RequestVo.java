@@ -1,9 +1,46 @@
-package kr.or.ddit.filter;
+package kr.or.ddit.filter.model;
 
 public class RequestVo {
+	
 	private String uri;
 	private String method;
 	
+	public RequestVo() {
+		/*
+		String str = "test";
+		//동일성 (같은 객체인지 확인)
+		//if("test" == str) {
+		 * if(str == str)
+			
+		}
+		if("test".equals("test")) {
+			
+		}
+		*/		
+	}
+	
+	public RequestVo(String uri, String method) {
+		this.uri = uri;
+		this.method = method;
+	}
+	
+	public String getUri() {
+		return uri;
+	}
+	public void setUri(String uri) {
+		this.uri = uri;
+	}
+	public String getMethod() {
+		return method;
+	}
+	public void setMethod(String method) {
+		this.method = method;
+	}
+	@Override
+	public String toString() {
+		return "RequestVo [uri=" + uri + ", method=" + method + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -13,6 +50,7 @@ public class RequestVo {
 		return result;
 	}
 
+	//객체 비교를 위하여
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -34,22 +72,8 @@ public class RequestVo {
 			return false;
 		return true;
 	}
-
-	public RequestVo(String uri, String method) {
-		this.uri = uri;
-		this.method = method;
-	}
-
-	public String getUri() {
-		return uri;
-	}
-	public void setUri(String uri) {
-		this.uri = uri;
-	}
-	public String getMethod() {
-		return method;
-	}
-	public void setMethod(String method) {
-		this.method = method;
-	}
+	
+	
+	
+	
 }

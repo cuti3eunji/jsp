@@ -17,6 +17,8 @@
 				<li><a href="#">Dashboard</a></li>
 				<li><a href="#">Settings</a></li>
 				<li><a href="#">Profile</a></li>
+				<li><a href="#">Help</a></li>
+				<li><a href="${cp }/logout">logout</a></li>
 				<li><a href="#">${S_USERVO.userNM} </a></li>
 				
 			</ul>
